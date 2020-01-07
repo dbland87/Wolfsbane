@@ -721,6 +721,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: booleanAction.actionPath
+      value: /actions/buggy/in/Reset
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549496134566403311, guid: dc06161b6d97feb419f45f03b62e14b9,
+        type: 3}
+      propertyPath: poseAction.actionPath
+      value: /actions/default/in/Pose
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549496134566403311, guid: dc06161b6d97feb419f45f03b62e14b9,
+        type: 3}
+      propertyPath: poseAction.needsReinit
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7549496135014563922, guid: dc06161b6d97feb419f45f03b62e14b9,
         type: 3}
       propertyPath: m_Name
