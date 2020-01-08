@@ -7,12 +7,24 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Inventory" t="Include">
-          <e p="WBInventory.cs" t="Include" />
+          <e p="Scripts" t="Include">
+            <e p="Inventory.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Items" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="Item.cs" t="Include" />
+          </e>
+          <e p="Weapons" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Weapon.cs" t="Include" />
+            </e>
+          </e>
         </e>
         <e p="Player" t="Include">
           <e p="Scripts" t="Include">
-            <e p="WBHand.cs" t="Include" />
-            <e p="WBPlayer.cs" t="Include" />
+            <e p="Hand.cs" t="Include" />
+            <e p="Player.cs" t="Include" />
           </e>
         </e>
         <e p="Temp" t="Include">
