@@ -3,12 +3,10 @@ using Items.Scripts;
 using UnityEngine;
 using Valve.VR.InteractionSystem;
 
-namespace Inventory.Scripts
+namespace Inventories.Scripts
 {
-    public class Inventory : Interactable
+    public class Inventory : MonoBehaviour
     {
-        //TODO this really shouldn't be an interactable
-
         private readonly Dictionary<string, Item> itemDict = new Dictionary<string, Item>();
 
         public void SetItemByTag(string tag, Item item)
@@ -28,5 +26,7 @@ namespace Inventory.Scripts
                 return null;
             }
         }
+        
+        
     }
 }
