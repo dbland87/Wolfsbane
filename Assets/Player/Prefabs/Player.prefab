@@ -283,12 +283,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7549496133664305155}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7549496135025366489}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &7549496133664305159
 CapsuleCollider:
@@ -362,7 +362,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7549496135025366489}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7549496133800958687
 MonoBehaviour:
@@ -535,7 +535,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7549496135025366489}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7549496134101751760
 MonoBehaviour:
@@ -865,7 +865,7 @@ Transform:
   - {fileID: 7549496134270885883}
   - {fileID: 7549496133988242928}
   m_Father: {fileID: 7549496135025366489}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1415776880637369051
 MonoBehaviour:
@@ -1056,9 +1056,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 779087669433349934}
+  - {fileID: 1497829247011699898}
   m_Father: {fileID: 7549496135025366489}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &7549496134874611084
 Camera:
@@ -1266,14 +1268,12 @@ Transform:
   m_LocalPosition: {x: -0.6748884, y: -1.1241688, z: -1.6597118}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7549496133664305156}
   - {fileID: 7549496134566403309}
   - {fileID: 7549496135170848802}
   - {fileID: 7549496134874611080}
   - {fileID: 7549496133800958686}
   - {fileID: 7549496134101751761}
-  - {fileID: 779087669433349934}
-  - {fileID: 1497829247011699898}
+  - {fileID: 7549496133664305156}
   m_Father: {fileID: 7549496135014563924}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1343,7 +1343,7 @@ Transform:
   - {fileID: 7549496134930858912}
   - {fileID: 7549496134428255476}
   m_Father: {fileID: 7549496135025366489}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &185985985263949810
 MonoBehaviour:
@@ -1752,7 +1752,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 7549496135025366489}
+    m_TransformParent: {fileID: 7549496134874611080}
     m_Modifications:
     - target: {fileID: 3619679221187298216, guid: 6f2c77ef8901c4d4bbaf9cdad6f5bd31,
         type: 3}
@@ -1792,7 +1792,7 @@ PrefabInstance:
     - target: {fileID: 3619679221187298216, guid: 6f2c77ef8901c4d4bbaf9cdad6f5bd31,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3619679221187298216, guid: 6f2c77ef8901c4d4bbaf9cdad6f5bd31,
         type: 3}
@@ -1814,6 +1814,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightHolster
       objectReference: {fileID: 0}
+    - target: {fileID: 5366044413422834692, guid: 6f2c77ef8901c4d4bbaf9cdad6f5bd31,
+        type: 3}
+      propertyPath: headTransform
+      value: 
+      objectReference: {fileID: 7549496134874611080}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f2c77ef8901c4d4bbaf9cdad6f5bd31, type: 3}
 --- !u!4 &1497829247011699898 stripped
@@ -1827,7 +1832,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 7549496135025366489}
+    m_TransformParent: {fileID: 7549496134874611080}
     m_Modifications:
     - target: {fileID: 3619679221187298216, guid: 6f2c77ef8901c4d4bbaf9cdad6f5bd31,
         type: 3}
@@ -1867,7 +1872,7 @@ PrefabInstance:
     - target: {fileID: 3619679221187298216, guid: 6f2c77ef8901c4d4bbaf9cdad6f5bd31,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3619679221187298216, guid: 6f2c77ef8901c4d4bbaf9cdad6f5bd31,
         type: 3}
@@ -1889,6 +1894,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftHolster
       objectReference: {fileID: 0}
+    - target: {fileID: 5366044413422834692, guid: 6f2c77ef8901c4d4bbaf9cdad6f5bd31,
+        type: 3}
+      propertyPath: headTransform
+      value: 
+      objectReference: {fileID: 7549496134874611080}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f2c77ef8901c4d4bbaf9cdad6f5bd31, type: 3}
 --- !u!4 &779087669433349934 stripped
