@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Items.Scripts;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
@@ -9,24 +10,20 @@ namespace Inventories.Scripts
 {
     public class Inventory : MonoBehaviour
     {
-        public Transform headTransform;
-        
         private readonly Dictionary<string, Item> itemDict = new Dictionary<string, Item>();
-
-        void FixedUpdate()
-        {
-            //TODO this is temp logic
-            transform.localPosition = new Vector3(transform.localPosition.x, -headTransform.position.y / 2, transform.localPosition.z);
-        }
+        
         public void SetItemByTag(string tag, Item item)
         {
+            Debug.Log("Set item: " + tag);
             itemDict[tag] = item;
         }
 
         public Item RetrieveItemByTag(string tag)
         {
+            Debug.Log("Trying to retrieve item: " + tag);
             if (itemDict.TryGetValue(tag, out var value))
             {
+                Debug.Log("You want: " + value.name);
                 return value;
             }
             else
@@ -35,7 +32,15 @@ namespace Inventories.Scripts
                 return null;
             }
         }
-        
-        
+
+        private void OnTriggerEnter(Collider other)
+        {
+            
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            
+        }
     }
 }

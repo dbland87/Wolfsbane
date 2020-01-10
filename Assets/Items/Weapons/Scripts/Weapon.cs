@@ -8,9 +8,6 @@ namespace Items.Weapons.Scripts
 
         private Inventory inventorySlot;
 
-        public void OnReleaseGrip()
-        {
-            
-        }
+        
     }
 }
