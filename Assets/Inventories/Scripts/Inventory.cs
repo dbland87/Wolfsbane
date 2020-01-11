@@ -10,20 +10,21 @@ namespace Inventories.Scripts
 {
     public class Inventory : MonoBehaviour
     {
-        private readonly Dictionary<string, Item> itemDict = new Dictionary<string, Item>();
+        private readonly Dictionary<string, GameObject> itemDict = new Dictionary<string, GameObject>();
         
-        public void SetItemByTag(string tag, Item item)
+        public void SetItemByTag(string tag, GameObject itemObject)
         {
-            Debug.Log("Set item: " + tag);
-            itemDict[tag] = item;
+            itemDict[tag] = itemObject;
+            itemObject.SetActive(false);
         }
 
-        public Item RetrieveItemByTag(string tag)
+        public GameObject RetrieveItemByTag(string tag)
         {
             Debug.Log("Trying to retrieve item: " + tag);
             if (itemDict.TryGetValue(tag, out var value))
             {
                 Debug.Log("You want: " + value.name);
+                value.SetActive(true);
                 return value;
             }
             else
@@ -31,16 +32,6 @@ namespace Inventories.Scripts
                 Debug.Log("Item does not exist with tag: " + tag);
                 return null;
             }
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            
         }
     }
 }

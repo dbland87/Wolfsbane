@@ -33,7 +33,7 @@ namespace Items.Scripts
                 inventoryCollider.GetComponent<Inventory>()
                     .SetItemByTag(
                         attachedToHand.handType.ToString(), 
-                        this
+                        gameObject
                     );
             }
         }

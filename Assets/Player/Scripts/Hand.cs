@@ -4,6 +4,7 @@ using Items.Weapons;
 using Items.Scripts;
 using Items.Weapons.Scripts;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 namespace Player.Scripts
 {
@@ -17,7 +18,7 @@ namespace Player.Scripts
         {
             if (isHoveringInventory)
             {
-                inventoryCollider.GetComponent<Inventory>().RetrieveItemByTag(handType.ToString());
+                AttachObject(inventoryCollider.GetComponent<Inventory>().RetrieveItemByTag(handType.ToString()), GrabTypes.Grip);
             }
         }
 
