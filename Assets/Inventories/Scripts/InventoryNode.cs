@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Items.Scripts;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
@@ -8,7 +9,7 @@ using Valve.VR.InteractionSystem;
 
 namespace Inventories.Scripts
 {
-    public class Inventory : MonoBehaviour
+    public class InventoryNode : MonoBehaviour
     {
         private readonly Dictionary<string, GameObject> itemDict = new Dictionary<string, GameObject>();
         
@@ -16,6 +17,7 @@ namespace Inventories.Scripts
         {
             itemDict[tag] = itemObject;
             itemObject.SetActive(false);
+            gameObject.GetComponentInParent<InventoryManager>().OnSetItemInChild(tag, itemObject);
         }
 
         public GameObject RetrieveItemByTag(string tag)
@@ -31,6 +33,16 @@ namespace Inventories.Scripts
             {
                 Debug.Log("Item does not exist with tag: " + tag);
                 return null;
+            }
+        }
+
+        public void PruneDuplicateItems(String tag, GameObject item)
+        {
+            foreach (var pair in itemDict.Where(pair => pair.Value == item && pair.Key != tag))
+            {
+                // If the item exists in this dictionary but the key doesn't match what was most recently assigned,
+                // it's been reassigned elsewhere and we need to prune the item from our list
+                itemDict.Remove(pair.Key);
             }
         }
     }

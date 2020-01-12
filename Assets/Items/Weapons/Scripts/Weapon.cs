@@ -6,7 +6,7 @@ namespace Items.Weapons.Scripts
     public class Weapon : Item
     {
 
-        private Inventory inventorySlot;
+        private InventoryNode inventoryNodeSlot;
 
         
     }

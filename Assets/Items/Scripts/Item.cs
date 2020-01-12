@@ -30,7 +30,7 @@ namespace Items.Scripts
             Debug.Log("On release grip");
             if (isHoveringInventory && attachedToHand != null)
             {
-                inventoryCollider.GetComponent<Inventory>()
+                inventoryCollider.GetComponent<InventoryNode>()
                     .SetItemByTag(
                         attachedToHand.handType.ToString(), 
                         gameObject

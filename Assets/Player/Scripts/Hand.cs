@@ -18,7 +18,7 @@ namespace Player.Scripts
         {
             if (isHoveringInventory)
             {
-                AttachObject(inventoryCollider.GetComponent<Inventory>().RetrieveItemByTag(handType.ToString()), GrabTypes.Grip);
+                AttachObject(inventoryCollider.GetComponent<InventoryNode>().RetrieveItemByTag(handType.ToString()), GrabTypes.Grip);
             }
         }
 
