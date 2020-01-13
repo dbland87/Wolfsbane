@@ -8,7 +8,6 @@
       <e p="Assets" t="Include">
         <e p="Inventories" t="Include">
           <e p="Scripts" t="Include">
-            <e p="InventoryManager.cs" t="Include" />
             <e p="InventoryNode.cs" t="Include" />
           </e>
         </e>

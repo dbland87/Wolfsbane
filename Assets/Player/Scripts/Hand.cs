@@ -4,6 +4,7 @@ using Items.Weapons;
 using Items.Scripts;
 using Items.Weapons.Scripts;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Valve.VR.InteractionSystem;
 
 namespace Player.Scripts
@@ -11,7 +12,7 @@ namespace Player.Scripts
     public class Hand : Valve.VR.InteractionSystem.Hand
     {
 
-        private Collider inventoryCollider;
+        public Collider inventoryCollider;
         private bool isHoveringInventory => inventoryCollider != null;
 
         public void OnGrabGripDown()
@@ -24,8 +25,7 @@ namespace Player.Scripts
 
         public void OnGrabGripUp()
         {
-            Debug.Log("OnGrabGripUp");
-            if (currentAttachedObject != null && currentAttachedObject.CompareTag("Item"))
+            if (currentAttachedObject != null && currentAttachedObject.GetComponent<Item>())
             {
                 currentAttachedObject.GetComponent<Item>()?.OnReleaseGrip();
             }
@@ -33,7 +33,7 @@ namespace Player.Scripts
         
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Inventory"))
+            if (other.gameObject.GetComponent<InventoryNode>())
             {
                 inventoryCollider = other;
             }

@@ -12,33 +12,41 @@ namespace Inventories.Scripts
     public class InventoryNode : MonoBehaviour
     {
         private readonly Dictionary<string, GameObject> itemDict = new Dictionary<string, GameObject>();
-        
-        public void SetItemByTag(string tag, GameObject itemObject)
+        public delegate void OnItemSet(string itemTag, GameObject item);
+        public static event OnItemSet onItemSet;
+
+        public Transform objectAttachmentPoint;
+
+        private void Awake()
         {
-            itemDict[tag] = itemObject;
-            itemObject.SetActive(false);
-            gameObject.GetComponentInParent<InventoryManager>().OnSetItemInChild(tag, itemObject);
+            onItemSet += PruneDuplicateItems;
         }
 
-        public GameObject RetrieveItemByTag(string tag)
+        public void SetItemByTag(string itemTag, GameObject itemObject)
         {
-            Debug.Log("Trying to retrieve item: " + tag);
-            if (itemDict.TryGetValue(tag, out var value))
+            itemDict[itemTag] = itemObject;
+            itemObject.GetComponent<Item>().attachedToHand.DetachObject(itemObject);
+            itemObject.SetActive(false);
+            onItemSet?.Invoke(itemTag, itemObject);
+        }
+
+        public GameObject RetrieveItemByTag(string itemTag)
+        {
+            if (itemDict.TryGetValue(itemTag, out var value))
             {
-                Debug.Log("You want: " + value.name);
                 value.SetActive(true);
                 return value;
             }
             else
             {
-                Debug.Log("Item does not exist with tag: " + tag);
+                Debug.LogError("Item does not exist with tag: " + itemTag);
                 return null;
             }
         }
 
-        public void PruneDuplicateItems(String tag, GameObject item)
+        public void PruneDuplicateItems(string itemTag, GameObject item)
         {
-            foreach (var pair in itemDict.Where(pair => pair.Value == item && pair.Key != tag))
+            foreach (var pair in itemDict.Where(pair => pair.Value == item && pair.Key != itemTag))
             {
                 // If the item exists in this dictionary but the key doesn't match what was most recently assigned,
                 // it's been reassigned elsewhere and we need to prune the item from our list
