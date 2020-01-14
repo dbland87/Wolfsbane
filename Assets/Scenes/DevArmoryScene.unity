@@ -532,7 +532,7 @@ PrefabInstance:
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 3}
       propertyPath: releaseVelocityStyle
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3901772868075650682, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 3}
@@ -543,6 +543,11 @@ PrefabInstance:
         type: 3}
       propertyPath: returnToInventorySpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901772868075650682, guid: fb710a001890d9a44bb74a8ce4f20cc0,
+        type: 3}
+      propertyPath: returnToInventoryDelay
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -631,7 +636,7 @@ PrefabInstance:
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 3}
       propertyPath: releaseVelocityStyle
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3901772868075650682, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 3}
@@ -642,6 +647,11 @@ PrefabInstance:
         type: 3}
       propertyPath: returnToInventorySpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901772868075650682, guid: fb710a001890d9a44bb74a8ce4f20cc0,
+        type: 3}
+      propertyPath: returnToInventoryDelay
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000010687615738, guid: fb710a001890d9a44bb74a8ce4f20cc0, type: 3}

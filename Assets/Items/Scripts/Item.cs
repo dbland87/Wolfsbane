@@ -10,16 +10,24 @@ namespace Items.Scripts
     {
         private Collider inventoryCollider;
         private InventoryNode assignedInventory;
-        private bool isHoveringInventory => inventoryCollider != null;
         private bool isReturningToInventory = false;
+        private Action returnToInventoryAction;
+        private bool isHoveringInventory => inventoryCollider != null;
+        
         public float returnToInventorySpeed;
+        public float returnToInventoryDelay;
+        
+        private void Awake()
+        {
+            returnToInventoryAction = OnTriggerReturnToInventory;
+        }
         
         protected override void Update()
         {
             base.Update();
             if (isReturningToInventory)
             {
-                ReturnToAssignedInventory();
+                MoveObjectToAssignedInventory();
             }
         }
 
@@ -48,20 +56,40 @@ namespace Items.Scripts
             );
         }
 
+        private void OnThrown(Rigidbody rigidbody)
+        {
+            Utils.Utils.AddTimer(gameObject, returnToInventoryDelay, returnToInventoryAction, true);
+        }
+
+        private void OnTriggerReturnToInventory()
+        {
+            isReturningToInventory = true;
+            // GetComponent<Rigidbody>().velocity = Vector3.zero;
+            // GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            GetComponent<Rigidbody>().useGravity = false;
+            GetComponent<Rigidbody>().isKinematic = true;
+            GetComponent<Rigidbody>().detectCollisions = false;
+        }
+
         private void AttachToAssignedInventory()
         {
             transform.SetParent(assignedInventory.objectAttachmentPoint.transform);
         }
 
-        public void ReturnToAssignedInventory()
+        private void OnObjectArrivedAtInventory(Rigidbody rigidbody)
+        {
+            isReturningToInventory = false;
+            AttachToAssignedInventory();
+            rigidbody.useGravity = true;
+            rigidbody.isKinematic = false;
+            rigidbody.detectCollisions = true;
+        }
+
+        public void MoveObjectToAssignedInventory()
         {
             if (Vector3.Distance(transform.position, assignedInventory.transform.position) < 0.01f)
             {
-                isReturningToInventory = false;
-                AttachToAssignedInventory();
-                GetComponent<Rigidbody>().useGravity = true;
-                GetComponent<Rigidbody>().isKinematic = false;
-                GetComponent<Rigidbody>().detectCollisions = true;
+                OnObjectArrivedAtInventory(GetComponent<Rigidbody>());
             }
             else
             {
@@ -77,12 +105,7 @@ namespace Items.Scripts
                 OnAssignedToInventory(inventoryCollider.GetComponent<InventoryNode>());
             } else if (assignedInventory != null)
             {
-                isReturningToInventory = true;
-                GetComponent<Rigidbody>().velocity = Vector3.zero;
-                GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-                GetComponent<Rigidbody>().useGravity = false;
-                GetComponent<Rigidbody>().isKinematic = true;
-                GetComponent<Rigidbody>().detectCollisions = false;
+                OnThrown(GetComponent<Rigidbody>());
             }
         }
     }

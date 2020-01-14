@@ -7,6 +7,8 @@ namespace Items.Weapons.Scripts
     {
 
         private InventoryNode inventoryNodeSlot;
+        
+        
 
         
     }
