@@ -11,9 +11,11 @@ namespace Inventories.Scripts
 {
     public class InventoryNode : MonoBehaviour
     {
-        private readonly Dictionary<string, GameObject> itemDict = new Dictionary<string, GameObject>();
+        public Dictionary<string, GameObject> itemDict = new Dictionary<string, GameObject>();
         public delegate void OnItemSet(string itemTag, GameObject item);
         public static event OnItemSet onItemSet;
+        public int MaximumItems = 1;
+        public bool canAcceptItem => itemDict.Count < MaximumItems;
 
         public Transform objectAttachmentPoint;
 
@@ -24,10 +26,14 @@ namespace Inventories.Scripts
 
         public void SetItemByTag(string itemTag, GameObject itemObject)
         {
-            itemDict[itemTag] = itemObject;
-            itemObject.GetComponent<Item>().attachedToHand.DetachObject(itemObject);
-            itemObject.SetActive(false);
-            onItemSet?.Invoke(itemTag, itemObject);
+            if (canAcceptItem)
+            {
+                itemDict[itemTag] = itemObject;
+                Debug.Log("InventoryNode. Count: " + itemDict.Count);
+                itemObject.GetComponent<Item>().attachedToHand.DetachObject(itemObject);
+                itemObject.SetActive(false);
+                onItemSet?.Invoke(itemTag, itemObject);
+            }
         }
 
         public GameObject RetrieveItemByTag(string itemTag)
@@ -35,6 +41,7 @@ namespace Inventories.Scripts
             if (itemDict.TryGetValue(itemTag, out var value))
             {
                 value.SetActive(true);
+                itemDict.Remove(itemTag);
                 return value;
             }
             else

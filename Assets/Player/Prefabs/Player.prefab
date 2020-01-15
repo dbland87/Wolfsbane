@@ -952,6 +952,7 @@ MonoBehaviour:
   showDebugText: 0
   spewDebugText: 0
   showDebugInteractables: 0
+  inventoryCollider: {fileID: 0}
 --- !u!114 &7549496134566403310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1441,6 +1442,7 @@ MonoBehaviour:
   showDebugText: 0
   spewDebugText: 0
   showDebugInteractables: 0
+  inventoryCollider: {fileID: 0}
 --- !u!114 &7549496135170848803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1869,7 +1871,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftHolster
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3945174515906961136, guid: 6f2c77ef8901c4d4bbaf9cdad6f5bd31, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6f2c77ef8901c4d4bbaf9cdad6f5bd31, type: 3}
 --- !u!4 &200539229911962003 stripped
 Transform:

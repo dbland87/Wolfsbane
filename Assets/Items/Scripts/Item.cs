@@ -1,7 +1,9 @@
 ﻿using System;
 using Inventories.Scripts;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
+using UnityEngine.Rendering;
 using Valve.VR.InteractionSystem;
 
 namespace Items.Scripts
@@ -10,7 +12,10 @@ namespace Items.Scripts
     {
         private Collider inventoryCollider;
         private InventoryNode assignedInventory;
+        private State state;
+
         private bool isReturningToInventory = false;
+        
         private Action returnToInventoryAction;
         private bool isHoveringInventory => inventoryCollider != null;
         
@@ -20,6 +25,7 @@ namespace Items.Scripts
         private void Awake()
         {
             returnToInventoryAction = OnTriggerReturnToInventory;
+            state = GetComponentInChildren<State>();
         }
         
         protected override void Update()
@@ -31,11 +37,30 @@ namespace Items.Scripts
             }
         }
 
+        private void OnEnterInventory(InventoryNode node)
+        {
+            if (!node.canAcceptItem)
+            {
+                state.Set(State.ItemState.Error);
+            }
+            else
+            {
+                Debug.Log("Node can accept object!");
+            }
+        }
+        
+        private void OnLeaveInventory(InventoryNode node)
+        {
+            state.Reset();
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.GetComponent<InventoryNode>())
             {
                 inventoryCollider = other;
+                Debug.Log("Item: Count: " + other.gameObject.GetComponent<InventoryNode>().itemDict.Count);
+                OnEnterInventory((other.gameObject.GetComponent<InventoryNode>()));
             }
         }
 
@@ -43,6 +68,7 @@ namespace Items.Scripts
         {
             if (other == inventoryCollider)
             {
+                OnLeaveInventory((other.gameObject.GetComponent<InventoryNode>()));
                 inventoryCollider = null;
             }
         }
