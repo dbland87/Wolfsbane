@@ -24,16 +24,16 @@ namespace Inventories.Scripts
             onItemSet += PruneDuplicateItems;
         }
 
-        public void SetItemByTag(string itemTag, GameObject itemObject)
+        public bool SetItemByTag(string itemTag, GameObject itemObject)
         {
             if (canAcceptItem)
             {
-                itemDict[itemTag] = itemObject;
-                Debug.Log("InventoryNode. Count: " + itemDict.Count);
                 itemObject.GetComponent<Item>().attachedToHand.DetachObject(itemObject);
                 itemObject.SetActive(false);
                 onItemSet?.Invoke(itemTag, itemObject);
+                return itemDict[itemTag] = itemObject;
             }
+            return false;
         }
 
         public GameObject RetrieveItemByTag(string itemTag)
@@ -44,11 +44,8 @@ namespace Inventories.Scripts
                 itemDict.Remove(itemTag);
                 return value;
             }
-            else
-            {
-                Debug.LogError("Item does not exist with tag: " + itemTag);
-                return null;
-            }
+            Debug.LogError("Item does not exist with tag: " + itemTag);
+            return null;
         }
 
         public void PruneDuplicateItems(string itemTag, GameObject item)

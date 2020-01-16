@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class State : MonoBehaviour
 {
 
     public ItemState currentState;
-    public MeshRenderer errorMesh;
+    public GameObject errorMeshObject;
     public enum ItemState
     {
         Default,
@@ -19,19 +20,25 @@ public class State : MonoBehaviour
         {
             case ItemState.Error:
             {
-                errorMesh.enabled = true;
+                currentState = ItemState.Error;
+                errorMeshObject.SetActive(true);
                 break;
             }
             case ItemState.Default:
             {
-                errorMesh.enabled = false;
+                currentState = ItemState.Default;
+                errorMeshObject.SetActive(false);
                 break;
             }
+            default:
+                currentState = ItemState.Default;
+                errorMeshObject.SetActive(false);
+                break;
         }
     }
 
     public void Reset()
     {
-        currentState = ItemState.Default;
+        Set(ItemState.Default);
     }
 }

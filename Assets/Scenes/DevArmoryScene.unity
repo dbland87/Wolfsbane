@@ -169,7 +169,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67623e36e2862d2478d0618e99e9efb2, type: 2}
+  - {fileID: 2100000, guid: 30649a350e54a1a4f918b5003a8e0974, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -275,7 +275,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67623e36e2862d2478d0618e99e9efb2, type: 2}
+  - {fileID: 2100000, guid: 30649a350e54a1a4f918b5003a8e0974, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -463,6 +463,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Item
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010777624494, guid: fb710a001890d9a44bb74a8ce4f20cc0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000011633437892, guid: fb710a001890d9a44bb74a8ce4f20cc0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.399
@@ -511,7 +515,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8983be608aa9a0640ae516354833c0e5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30649a350e54a1a4f918b5003a8e0974, type: 2}
     - target: {fileID: 54000012175907764, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 3}
       propertyPath: m_UseGravity
@@ -687,6 +691,11 @@ PrefabInstance:
       propertyPath: releaseVelocityStyle
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3066240862459462435, guid: fb710a001890d9a44bb74a8ce4f20cc0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3901772868075650682, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 3}
       propertyPath: hideHandOnAttach
@@ -701,6 +710,11 @@ PrefabInstance:
         type: 3}
       propertyPath: returnToInventoryDelay
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860730803733144670, guid: fb710a001890d9a44bb74a8ce4f20cc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000010687615738, guid: fb710a001890d9a44bb74a8ce4f20cc0, type: 3}

@@ -43,10 +43,6 @@ namespace Items.Scripts
             {
                 state.Set(State.ItemState.Error);
             }
-            else
-            {
-                Debug.Log("Node can accept object!");
-            }
         }
         
         private void OnLeaveInventory(InventoryNode node)
@@ -59,7 +55,6 @@ namespace Items.Scripts
             if (other.gameObject.GetComponent<InventoryNode>())
             {
                 inventoryCollider = other;
-                Debug.Log("Item: Count: " + other.gameObject.GetComponent<InventoryNode>().itemDict.Count);
                 OnEnterInventory((other.gameObject.GetComponent<InventoryNode>()));
             }
         }
@@ -75,11 +70,13 @@ namespace Items.Scripts
 
         private void OnAssignedToInventory(InventoryNode inventoryNode)
         {
-            assignedInventory = inventoryNode;
-            assignedInventory.SetItemByTag(
-                attachedToHand.handType.ToString(), 
+            if (inventoryNode.SetItemByTag(
+                attachedToHand.handType.ToString(),
                 gameObject
-            );
+            ))
+            {
+                assignedInventory = inventoryNode;
+            }
         }
 
         private void OnThrown(Rigidbody rigidbody)
@@ -90,8 +87,6 @@ namespace Items.Scripts
         private void OnTriggerReturnToInventory()
         {
             isReturningToInventory = true;
-            // GetComponent<Rigidbody>().velocity = Vector3.zero;
-            // GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             GetComponent<Rigidbody>().useGravity = false;
             GetComponent<Rigidbody>().isKinematic = true;
             GetComponent<Rigidbody>().detectCollisions = false;

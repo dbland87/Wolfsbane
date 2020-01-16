@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  errorMesh: {fileID: 3066240862459462435}
+  errorMeshObject: {fileID: 4860730803733144670}
 --- !u!1 &4860730803733144670
 GameObject:
   m_ObjectHideFlags: 0
