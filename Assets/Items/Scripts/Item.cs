@@ -18,6 +18,7 @@ namespace Items.Scripts
         
         private Action returnToInventoryAction;
         private bool isHoveringInventory => inventoryCollider != null;
+        private bool isHoveringAssignedInventory => inventoryCollider.gameObject.GetComponent<InventoryNode>() == assignedInventory;
         
         public float returnToInventorySpeed;
         public float returnToInventoryDelay;
@@ -39,7 +40,7 @@ namespace Items.Scripts
 
         private void OnEnterInventory(InventoryNode node)
         {
-            if (!node.canAcceptItem)
+            if (!node.CanAcceptItem(gameObject))
             {
                 state.Set(State.ItemState.Error);
             }
@@ -81,7 +82,13 @@ namespace Items.Scripts
 
         private void OnThrown(Rigidbody rigidbody)
         {
-            Utils.Utils.AddTimer(gameObject, returnToInventoryDelay, returnToInventoryAction, true);
+            rigidbody.isKinematic = false;
+            rigidbody.useGravity = true;
+            rigidbody.detectCollisions = true;
+            if (assignedInventory != null)
+            {
+                Utils.Utils.AddTimer(gameObject, returnToInventoryDelay, returnToInventoryAction, true);
+            }
         }
 
         private void OnTriggerReturnToInventory()
@@ -95,15 +102,15 @@ namespace Items.Scripts
         private void AttachToAssignedInventory()
         {
             transform.SetParent(assignedInventory.objectAttachmentPoint.transform);
+            GetComponent<Rigidbody>().useGravity = false;
+            GetComponent<Rigidbody>().detectCollisions = false;
+            GetComponent<Rigidbody>().isKinematic = false;
         }
 
         private void OnObjectArrivedAtInventory(Rigidbody rigidbody)
         {
             isReturningToInventory = false;
             AttachToAssignedInventory();
-            rigidbody.useGravity = true;
-            rigidbody.isKinematic = false;
-            rigidbody.detectCollisions = true;
         }
 
         public void MoveObjectToAssignedInventory()
@@ -121,10 +128,15 @@ namespace Items.Scripts
         
         public void OnReleaseGrip()
         {
-            if (isHoveringInventory && attachedToHand != null)
+            if (isHoveringAssignedInventory)
+            {
+                AttachToAssignedInventory();
+            }
+            else if (isHoveringInventory && attachedToHand != null)
             {
                 OnAssignedToInventory(inventoryCollider.GetComponent<InventoryNode>());
-            } else if (assignedInventory != null)
+            }  
+            else
             {
                 OnThrown(GetComponent<Rigidbody>());
             }

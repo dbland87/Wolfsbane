@@ -15,7 +15,7 @@ namespace Inventories.Scripts
         public delegate void OnItemSet(string itemTag, GameObject item);
         public static event OnItemSet onItemSet;
         public int MaximumItems = 1;
-        public bool canAcceptItem => itemDict.Count < MaximumItems;
+        public bool isAtCapacity => itemDict.Count >= MaximumItems;
 
         public Transform objectAttachmentPoint;
 
@@ -26,10 +26,9 @@ namespace Inventories.Scripts
 
         public bool SetItemByTag(string itemTag, GameObject itemObject)
         {
-            if (canAcceptItem)
+            if (!isAtCapacity)
             {
                 itemObject.GetComponent<Item>().attachedToHand.DetachObject(itemObject);
-                itemObject.SetActive(false);
                 onItemSet?.Invoke(itemTag, itemObject);
                 return itemDict[itemTag] = itemObject;
             }
@@ -40,8 +39,6 @@ namespace Inventories.Scripts
         {
             if (itemDict.TryGetValue(itemTag, out var value))
             {
-                value.SetActive(true);
-                itemDict.Remove(itemTag);
                 return value;
             }
             Debug.LogError("Item does not exist with tag: " + itemTag);
@@ -57,5 +54,16 @@ namespace Inventories.Scripts
                 itemDict.Remove(pair.Key);
             }
         }
+
+        public bool CanAcceptItem(GameObject item)
+        {
+            return !isAtCapacity || itemDict.ContainsValue(item);
+        }
+
+        public void OnItemDiscarded(GameObject item)
+        {
+            // itemDict.Remove(itemTag);
+        }
     }
+    
 }
