@@ -26,7 +26,7 @@ namespace Items.Scripts
         private void Awake()
         {
             returnToInventoryAction = OnTriggerReturnToInventory;
-            state = GetComponentInChildren<State>();
+            state = GetComponentInChildren<State>(); 
         }
         
         protected override void Update()

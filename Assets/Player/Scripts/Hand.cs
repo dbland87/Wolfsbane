@@ -30,7 +30,7 @@ namespace Player.Scripts
                 currentAttachedObject.GetComponent<Item>()?.OnReleaseGrip();
             }
         }
-        
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.GetComponent<InventoryNode>())

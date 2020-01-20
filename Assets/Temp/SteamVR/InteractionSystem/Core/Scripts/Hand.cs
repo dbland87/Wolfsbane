@@ -1003,7 +1003,11 @@ namespace Valve.VR.InteractionSystem
                     transform.position = noSteamVRFallbackCamera.transform.forward * (-1000.0f);
 
                     RaycastHit raycastHit;
-                    if (Physics.Raycast(ray, out raycastHit, noSteamVRFallbackMaxDistanceNoItem))
+                    
+                    // // WBMODIFIED
+                    LayerMask mask =~ LayerMask.GetMask("Debug");
+                    
+                    if (Physics.Raycast(ray, out raycastHit, noSteamVRFallbackMaxDistanceNoItem, mask))
                     {
                         transform.position = raycastHit.point;
 
@@ -1470,9 +1474,13 @@ namespace Valve.VR.InteractionSystem
                 if (noSteamVRFallbackCamera)
                 {
                     if (Input.GetMouseButtonDown(0))
+                    {
                         return GrabTypes.Grip;
+                    }
                     else
+                    {
                         return GrabTypes.None;
+                    }
                 }
 
                 if (grabPinchAction != null && grabPinchAction.GetStateDown(handType))
