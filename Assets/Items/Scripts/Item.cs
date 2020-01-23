@@ -18,8 +18,8 @@ namespace Items.Scripts
         
         private Action returnToInventoryAction;
         private bool isHoveringInventory => inventoryCollider != null;
-        private bool isHoveringAssignedInventory => inventoryCollider.gameObject.GetComponent<InventoryNode>() == assignedInventory;
-        
+        private bool isHoveringAssignedInventory => inventoryCollider != null && inventoryCollider.gameObject.GetComponent<InventoryNode>() == assignedInventory;
+
         public float returnToInventorySpeed;
         public float returnToInventoryDelay;
         
